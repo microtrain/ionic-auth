@@ -14,10 +14,17 @@ export class AuthService {
 
   private url: string;
 
-  
   constructor(private http: HttpClient) {
     let l = window.location;
-    this.url = `${l.protocol}://${l.hostname}/api/auth/`;
+    let host:string;
+    
+    if(l.port == '8100'){
+      host = 'localhost:3000';
+    }else{
+      host = l.hostname + ((l.port.length>0)?':' + l.port:'');
+    }
+
+    this.url = `${l.protocol}//${host}/api/auth/`;
   }
 
   register(user: User): Observable<User>{
