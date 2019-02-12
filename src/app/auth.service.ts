@@ -35,7 +35,7 @@ export class AuthService {
     return this.http.post<User>(this.url + 'login', user, httpOptions);
   }
 
-  logOut(user: User): Observable<User>{
-    return this.http.get<User>(this.url + 'logout');
+  logOut(): Observable<User>{
+    return this.http.delete<User>(this.url + 'logout');
   }
 }
